@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/estilos.css">
+<!--llamada a vuejs-->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!--llamada a axios-->  
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--llamada a VueClipboard -->
+  <script src="js/vue-clipboard.min.js"></script>  
+  <title>Frontend Mentor | Shortly URL shortening API Challenge</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+   -->
+</head>
+<body>
+<div class="grid-container">
+  <div class="EncabezadoTitulo">
+    <div class="bloque">
+      <h1 class="titulo">Shortly</h1>
+        <div class="hamburger">
+          <div class="_layer -top"></div>
+          <div class="_layer -mid"></div>
+          <div class="_layer -bottom"></div>
+        </div>
+      <nav class="menuppal">
+        <ul>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Resources</a></li>
+          <span class="spanEscritorio">
+              <li><a id="login" href="#">Login</a></li>
+              <li><a id="singUp" href="#">Sign Up</a></li>
+          </span>
+        </ul>      
+      </nav>
+    </div>
+
+    <img class="imgTrabajo" src="images/illustration-working.svg" alt="img_trabajo">
+    <h2 class="subtitulo ">More than just shorter links</h2>  
+
+      <div class="txtBuild">Build your brand’s recognition and get detailed insights 
+      on how your links are performing.
+      </div>
+      <buttons class="getStarted">Get Started</button>
+  </div>
+
+  <div id="app" class="formCuerpo">
+      <div class="fondoGirs">
+          <form  @submit.prevent="acortarUrl" class="formularioUrl">
+            <label></label>
+            <input  v-model="mensaje" type="url" class="url" placeholder="Shorten a link here...">
+            <button type="submit" class="shortenIt" >Shorten It!</button>
+          </form>
+
+          <div class="urlFondoEscritorio">
+              <div class="app">{{ mensajeGuardado }}</div>
+              <div class="appUrl"><a id="enlace" :href="urlParaMostrar">{{ urlParaMostrar }} <button id="btnCopiar" style="display:none;" v-on:click.prevent ="copiar">copiar</button></a>
+          </div>
+<!--        <button >
+          copiarURL
+        </button> -->
+      </div>
+    </br>
+     <!-- <pre>{{ $data }}</pre> -->
+          <h3 class="subtitulosTres subTresEscrtorio">Advanced Statistics</h3>
+
+          <div class="txtBuild txtBuildEscritorio" style="color:hsl(0, 0%, 75%);">Track how your links are performing across the web with our 
+               advanced statistics dashboard.
+          </div>
+        <div class="blancosModEscritorio">
+          <div id="contenedorBlanco1" class="ContenedoresBlancos">
+               <img class="imagenes" src="images/icon-brand-recognition.svg">       
+               <h3 class="subtitulosTres">Brand Recognition</h3>
+               <div class="txtBuild"> 
+                   Boost your brand recognition with each click. Generic links don’t 
+                   mean a thing. Branded links help instil confidence in your content.
+               </div>
+          </div>
+            <hr class="vl">
+          <div id="contenedorBlanco2" class="ContenedoresBlancos">
+              <img class="imagenes" src="images/icon-detailed-records.svg">
+              <h3 class="subtitulosTres">Detailed Records</h3>
+              <div class="txtBuild">    
+                  Gain insights into who is clicking your links. Knowing when and where 
+                  people engage with your content helps inform better decisions.
+              </div>    
+          </div>        
+            <hr class="vl">
+          <div id="contenedorBlanco3" class="ContenedoresBlancos"> 
+              <img class="imagenes" src="images/icon-fully-customizable.svg"> 
+              <h3 class="subtitulosTres">Fully Customizable</h3>
+              <div class="txtBuild">
+                  Improve brand awareness and content discoverability through customizable 
+                  links, supercharging audience engagement.
+              </div>    
+          </div>          
+        </div>
+
+      </div>
+  </div>
+  <div class="botonlink">
+      <h2 class="boost">Boost your links today</h2>
+
+      <button class="shortenIt">Get Started</button>
+  </div>
+  <div class="footer">
+    <p class="tituloFooter">Shortly</p>
+
+     <div class="footerDiv">
+       <p class="features">Features</p>
+        <ul class="ulFooter">
+          <li>Link Shortening</li>
+          <li>Branded Links</li>
+          <li>Analytics</li>
+        </ul>       
+     </div>
+
+
+      <div class="footerDiv">
+        <p class="features">Resources</p>
+          <ul class="ulFooter">
+            <li>Blog</li>
+            <li>Developers</li>
+            <li>Support</li>
+          </ul>        
+      </div>
+
+     <div class="footerDiv">
+        <p class="features">Company</p>
+        <ul class="ulFooter">
+          <li>About</li>
+          <li>Our Team</li>
+          <li>Careers</li>
+          <li>Contact</li>
+        </ul>       
+     </div> 
+
+   
+      <div class="rsociales">
+        <img class="socialesImg" alt="facebook" src="images/icon-facebook.svg">
+        <img class="socialesImg" alt="twitter" src="images/icon-twitter.svg">
+        <img class="socialesImg" alt="pinterest" src="images/icon-pinterest.svg">
+        <img class="socialesImg" alt="instagram" src="images/icon-instagram.svg">
+            <div class="attribution">
+              Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+              Coded by <a href="#">Your Name Here</a>.
+            </div>        
+      </div>
+
+
+  </div>
+</div>
+
+</body>
+<script src="js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</html>
